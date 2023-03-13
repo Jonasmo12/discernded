@@ -1,0 +1,22 @@
+html, body {
+
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 20px !important;
+}
+
+.bg {
+    background: url("../img/1.jpg") center center no-repeat;
+    position: relative;
+    height: 65vh;
+    background-size: cover;
+}
+
+.home-text {
+    padding-top: 200px;
+}
+
+.home-text, h1 {
+    color: #fff;
+}
