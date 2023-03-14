@@ -1,10 +1,15 @@
-version: '3.8'
-
+version: "3.8"
 services:
   db:
     image: postgres:alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=jonnybango
+      - POSTGRES_PASSWORD=password
     ports:
       - "5432:5432"
-    environment:
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: discernded
+    volumes:
+      - db:/var/lib/postgresql/data
+volumes:
+  db:
+    driver: local
