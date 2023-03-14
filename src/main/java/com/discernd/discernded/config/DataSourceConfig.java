@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Primary;
 public class DataSourceConfig {
     @Bean
     @Primary
-    @ConfigurationProperties("app.main.datasource")
+    @ConfigurationProperties("app.datasource.main")
     public HikariDataSource hikariDataSource() {
         return DataSourceBuilder
                 .create()
