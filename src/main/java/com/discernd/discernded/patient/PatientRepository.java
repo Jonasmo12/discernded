@@ -12,14 +12,20 @@ public class PatientRepository {
     }
 
     public List<Patient> selectPatients() {
-        return null;
+        var sql = """
+                  SELECT id, identityNumber
+                  FROM patient
+                  LIMIT 25;
+                  """;
+        return jdbcTemplate.query(sql, new PatientRowWrapper());
     }
 
     public int addPatient(Patient patient) {
-        String sql = """
-                INSERT INTO patient(firstName, lastName, email, identityNumber)
-                VALUES (?, ?);
-                """;
-        return jdbcTemplate.update(sql);
+
+        var sql = """
+                        INSERT INTO patient(firstName, lastName, email, identityNumber)
+                        VALUES (?, ?);
+                    """;
+        return jdbcTemplate.update(sql, patient.getIdentityNumber(), patient.getEmail());
     }
 }
