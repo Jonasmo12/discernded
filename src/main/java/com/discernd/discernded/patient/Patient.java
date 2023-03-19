@@ -57,6 +57,7 @@ public class Patient implements UserDetails {
     private String email;
     private String username;
     private String password;
+    @Enumerated(EnumType.STRING)
     private AppUserRole appUserRole;
     private Boolean locked;
     private Boolean enabled;
