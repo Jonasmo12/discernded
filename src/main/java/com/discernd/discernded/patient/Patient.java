@@ -1,6 +1,10 @@
 package com.discernd.discernded.patient;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity(name = "Patient")
 @Table(
@@ -10,7 +14,7 @@ import javax.persistence.*;
                 @UniqueConstraint(name = "patient_identity_number_unique", columnNames = "identity_number")
         }
 )
-public class Patient {
+public class Patient implements UserDetails {
     @Id
     @SequenceGenerator(
             name = "patient_sequence",
@@ -49,6 +53,11 @@ public class Patient {
             columnDefinition = "TEXT"
     )
     private String email;
+    private String username;
+    private String password;
+    private AppUserRole appUserRole;
+    private Boolean locked;
+    private Boolean enabled;
 
     public Patient(Long id) {
         this.id = id;
@@ -127,5 +136,40 @@ public class Patient {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public String getPassword() {
+        return null;
+    }
+
+    @Override
+    public String getUsername() {
+        return null;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
     }
 }
