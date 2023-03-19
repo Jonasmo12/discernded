@@ -24,4 +24,9 @@ public class PatientController {
         model.addAttribute("patients", patientRepository.findAll());
         return "patients";
     }
+
+    @RequestMapping(value = "/login")
+    public String login() {
+        return "login";
+    }
 }
