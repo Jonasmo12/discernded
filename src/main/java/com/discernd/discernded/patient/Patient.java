@@ -1,10 +1,12 @@
 package com.discernd.discernded.patient;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Collections;
 
 @Entity(name = "Patient")
 @Table(
@@ -59,33 +61,59 @@ public class Patient implements UserDetails {
     private Boolean locked;
     private Boolean enabled;
 
+    public Patient() {
+    }
+
+    public Patient(
+            Long id,
+            String firstName,
+            String lastName,
+            Long identityNumber,
+            String email,
+            String username,
+            String password,
+            AppUserRole appUserRole,
+            Boolean locked,
+            Boolean enabled
+    ) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.identityNumber = identityNumber;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.appUserRole = appUserRole;
+        this.locked = locked;
+        this.enabled = enabled;
+    }
+
+    public Patient(
+            String firstName,
+            String lastName,
+            Long identityNumber,
+            String email,
+            String username,
+            String password,
+            AppUserRole appUserRole,
+            Boolean locked,
+            Boolean enabled
+    ) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.identityNumber = identityNumber;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.appUserRole = appUserRole;
+        this.locked = locked;
+        this.enabled = enabled;
+    }
+
     public Patient(Long id) {
         this.id = id;
     }
 
-    public Patient(String firstName,
-                   String lastName,
-                   Long identityNumber,
-                   String email
-    ) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.identityNumber = identityNumber;
-        this.email = email;
-    }
-
-    public Patient(Long id,
-                   String firstName,
-                   String lastName,
-                   Long identityNumber,
-                   String email
-    ) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.identityNumber = identityNumber;
-        this.email = email;
-    }
 
     @Override
     public String toString() {
@@ -96,6 +124,38 @@ public class Patient implements UserDetails {
                 ", identityNumber=" + identityNumber +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public AppUserRole getAppUserRole() {
+        return appUserRole;
+    }
+
+    public void setAppUserRole(AppUserRole appUserRole) {
+        this.appUserRole = appUserRole;
+    }
+
+    public Boolean getLocked() {
+        return locked;
+    }
+
+    public void setLocked(Boolean locked) {
+        this.locked = locked;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 
     public Long getId() {
@@ -140,36 +200,39 @@ public class Patient implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        SimpleGrantedAuthority authority =
+                new SimpleGrantedAuthority(appUserRole.name()
+        );
+        return Collections.singletonList(authority);
     }
 
     @Override
     public String getPassword() {
-        return null;
+        return password;
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return username;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return !locked;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return enabled ;
     }
 }
