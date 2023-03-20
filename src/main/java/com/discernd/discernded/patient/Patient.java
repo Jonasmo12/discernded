@@ -55,7 +55,6 @@ public class Patient implements UserDetails {
             columnDefinition = "TEXT"
     )
     private String email;
-    private String username;
     private String password;
     @Enumerated(EnumType.STRING)
     private AppUserRole appUserRole;
@@ -71,22 +70,16 @@ public class Patient implements UserDetails {
             String lastName,
             Long identityNumber,
             String email,
-            String username,
             String password,
-            AppUserRole appUserRole,
-            Boolean locked,
-            Boolean enabled
+            AppUserRole appUserRole
     ) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.identityNumber = identityNumber;
         this.email = email;
-        this.username = username;
         this.password = password;
         this.appUserRole = appUserRole;
-        this.locked = locked;
-        this.enabled = enabled;
     }
 
     public Patient(
@@ -94,21 +87,15 @@ public class Patient implements UserDetails {
             String lastName,
             Long identityNumber,
             String email,
-            String username,
             String password,
-            AppUserRole appUserRole,
-            Boolean locked,
-            Boolean enabled
+            AppUserRole appUserRole
     ) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.identityNumber = identityNumber;
         this.email = email;
-        this.username = username;
         this.password = password;
         this.appUserRole = appUserRole;
-        this.locked = locked;
-        this.enabled = enabled;
     }
 
     public Patient(Long id) {
@@ -125,10 +112,6 @@ public class Patient implements UserDetails {
                 ", identityNumber=" + identityNumber +
                 ", email='" + email + '\'' +
                 '}';
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public void setPassword(String password) {
@@ -214,7 +197,7 @@ public class Patient implements UserDetails {
 
     @Override
     public String getUsername() {
-        return username;
+        return email;
     }
 
     @Override
