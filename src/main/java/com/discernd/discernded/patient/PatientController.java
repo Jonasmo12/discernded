@@ -29,5 +29,5 @@ public class PatientController {
     public String login() {
         return "login";
     }
-    
+
 }
