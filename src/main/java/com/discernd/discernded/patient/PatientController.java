@@ -1,5 +1,7 @@
 package com.discernd.discernded.patient;
 
+import com.discernd.discernded.registration.RegistrationRequest;
+import com.discernd.discernded.registration.RegistrationService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class PatientController {
     private final PatientRepository patientRepository;
-
 
     public PatientController(PatientRepository patientRepository) {
         this.patientRepository = patientRepository;
@@ -29,5 +30,4 @@ public class PatientController {
     public String login() {
         return "login";
     }
-
 }
