@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(path = "/register")
 public class RegistrationController {
     private final RegistrationService registrationService;
 
@@ -13,6 +12,7 @@ public class RegistrationController {
         this.registrationService = registrationService;
     }
 
+    @RequestMapping(value = "/register")
     public String register(RegistrationRequest registrationRequest) {
         return registrationService.register(registrationRequest);
     }
