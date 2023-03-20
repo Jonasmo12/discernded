@@ -26,25 +26,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+    @Override
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .csrf().disable()
-                .authorizeHttpRequests((requests) -> requests
-                        .regexMatchers("/")
-                        .permitAll()
-                        .anyRequest()
-                        .authenticated()
-                )
-                .csrf().disable()
-                .authorizeRequests()
+                .authorizeHttpRequests()
                         .regexMatchers("/register")
                         .permitAll()
                         .anyRequest()
                         .authenticated()
                         .and()
                         .formLogin();
-        return httpSecurity.build();
     }
 
     @Override
