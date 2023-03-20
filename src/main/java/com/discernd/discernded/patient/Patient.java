@@ -48,7 +48,7 @@ public class Patient implements UserDetails {
             name = "identity_number",
             nullable = false
     )
-    private Long identityNumber;
+    private String identityNumber;
     @Column(
             name = "email",
             nullable = false,
@@ -61,14 +61,13 @@ public class Patient implements UserDetails {
     private Boolean locked = false;
     private Boolean enabled = false;
 
-    public Patient() {
-    }
+    public Patient(){}
 
     public Patient(
             Long id,
             String firstName,
             String lastName,
-            Long identityNumber,
+            String identityNumber,
             String email,
             String password,
             AppUserRole appUserRole
@@ -85,7 +84,7 @@ public class Patient implements UserDetails {
     public Patient(
             String firstName,
             String lastName,
-            Long identityNumber,
+            String identityNumber,
             String email,
             String password,
             AppUserRole appUserRole
@@ -166,11 +165,11 @@ public class Patient implements UserDetails {
         this.lastName = lastName;
     }
 
-    public Long getIdentityNumber() {
+    public String getIdentityNumber() {
         return identityNumber;
     }
 
-    public void setIdentityNumber(Long identityNumber) {
+    public void setIdentityNumber(String identityNumber) {
         this.identityNumber = identityNumber;
     }
 
