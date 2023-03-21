@@ -1,5 +1,6 @@
-package com.discernd.discernded.health;
+package com.discernd.discernded.medicalhistory;
 
+import com.discernd.discernded.allergy.Allergy;
 import com.discernd.discernded.patient.Patient;
 
 import javax.persistence.*;

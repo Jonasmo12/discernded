@@ -12,10 +12,4 @@ import java.util.Optional;
 @Transactional(readOnly = true)
 public interface PatientRepository extends JpaRepository<Patient, Long> {
     Optional<Patient> findByEmail(String email);
-
-//    @Transactional
-//    @Modifying
-//    @Query("UPDATE Patient a" +
-//    "SET a.enabled = TRUE WHERE a.email = ?1")
-//    int enablePatient(String email);
 }

@@ -1,7 +1,6 @@
 package com.discernd.discernded.patient;
 
-import com.discernd.discernded.health.Allergy;
-import com.discernd.discernded.health.MedicalHistory;
+import com.discernd.discernded.medicalhistory.MedicalHistory;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

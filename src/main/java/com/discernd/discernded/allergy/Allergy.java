@@ -1,4 +1,6 @@
-package com.discernd.discernded.health;
+package com.discernd.discernded.allergy;
+
+import com.discernd.discernded.medicalhistory.MedicalHistory;
 
 import javax.persistence.*;
 import java.time.Clock;
