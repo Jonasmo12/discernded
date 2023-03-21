@@ -3,6 +3,9 @@ package com.discernd.discernded.health;
 import com.discernd.discernded.patient.Patient;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 @Entity(name = "medicalHistory")
 public class MedicalHistory {
@@ -23,7 +26,60 @@ public class MedicalHistory {
     private Long Id;
     @OneToOne(mappedBy = "medicalHistory")
     private Patient patient;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "allergy_id")
-    private Allergy allergy;
+
+    @OneToMany(mappedBy = "medicalhistory")
+    private Set<Allergy> allergies = new HashSet<>();
+
+    public Long getId() {
+        return Id;
+    }
+
+    public MedicalHistory(Long id) {
+        Id = id;
+    }
+
+    public MedicalHistory(Patient patient, Set<Allergy> allergies) {
+        this.patient = patient;
+        this.allergies = allergies;
+    }
+
+    public MedicalHistory() {
+    }
+
+    @Override
+    public String toString() {
+        return "MedicalHistory{" +
+               "Id=" + Id +
+               ", patient=" + patient +
+               ", allergies=" + allergies +
+               '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof MedicalHistory that)) return false;
+        return Objects.equals(Id, that.Id) && Objects.equals(patient, that.patient) && Objects.equals(allergies, that.allergies);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(Id, patient, allergies);
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
+    public void setAllergies(Set<Allergy> allergies) {
+        this.allergies = allergies;
+    }
+
+    public Set<Allergy> getAllergies() {
+        return allergies;
+    }
 }
