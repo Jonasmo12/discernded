@@ -43,6 +43,11 @@ public class Allergy {
         this.dateCreated = dateCreated;
     }
 
+    public Allergy(String name, MedicalHistory medicalHistory) {
+        this.name = name;
+        this.medicalHistory = medicalHistory;
+    }
+
     public MedicalHistory getMedicalHistory() {
         return medicalHistory;
     }
