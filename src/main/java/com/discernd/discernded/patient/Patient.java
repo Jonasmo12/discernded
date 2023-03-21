@@ -1,5 +1,7 @@
 package com.discernd.discernded.patient;
 
+import com.discernd.discernded.health.Allergy;
+import com.discernd.discernded.health.MedicalHistory;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -60,6 +62,9 @@ public class Patient implements UserDetails {
     private AppUserRole appUserRole;
     private Boolean locked = false;
     private Boolean enabled = false;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "medicalhistory_id")
+    private MedicalHistory medicalHistory;
 
     public Patient(){}
 

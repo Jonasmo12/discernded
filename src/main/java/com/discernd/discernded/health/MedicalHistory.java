@@ -21,7 +21,8 @@ public class MedicalHistory {
             updatable = false
     )
     private Long Id;
-//    private Patient patient;
+    @OneToOne(mappedBy = "medicalHistory")
+    private Patient patient;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "allergy_id")
     private Allergy allergy;
