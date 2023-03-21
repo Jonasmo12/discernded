@@ -1,6 +1,7 @@
 package com.discernd.discernded.registration;
 
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import java.util.function.Predicate;
 
@@ -8,6 +9,7 @@ import java.util.function.Predicate;
 public class EmailValidator implements Predicate<String> {
     @Override
     public boolean test(String s) {
+        Assert.notNull(s, "email vali cannot be null");
         return true;
     }
 }

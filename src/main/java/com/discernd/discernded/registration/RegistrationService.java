@@ -4,6 +4,7 @@ import com.discernd.discernded.patient.AppUserRole;
 import com.discernd.discernded.patient.Patient;
 import com.discernd.discernded.patient.PatientService;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 @Service
 public class RegistrationService {
@@ -15,10 +16,11 @@ public class RegistrationService {
     }
 
     public String register(RegistrationRequest registrationRequest) {
-        boolean isValidEmail = emailValidator.test(registrationRequest.getEmail());
-        if (!isValidEmail) {
-            throw new IllegalStateException("email is not valid!!");
-        }
+//        Assert.notNull(emailValidator, "this cannot be null");
+//        boolean isValidEmail = emailValidator.test(registrationRequest.getEmail());
+//        if (!isValidEmail) {
+//            throw new IllegalStateException("email is not valid!!");
+//        }
         return patientService.signUpPatient(
                 new Patient(
                         registrationRequest.getFirstName(),
