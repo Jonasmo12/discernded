@@ -25,10 +25,6 @@ public class RegistrationController {
     }
     @PostMapping(value = "/register")
     public String register(@ModelAttribute RegistrationRequest registrationRequest, Errors errors) {
-//        model.addAttribute("registrationRequest", registrationService.register(registrationRequest));
-        if (errors.hasErrors()) {
-            return "register";
-        }
         registrationService.register(registrationRequest);
         return "home";
     }
